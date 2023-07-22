@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 public class MainIndex {
     public static void main(String[] args) {
-       
         Menu menu1 = new Menu("Nasi Goreng", 25000);
         Menu menu2 = new Menu("Mie Ayam", 20000);
         Menu menu3 = new Menu("Ayam Bakar", 30000);
@@ -80,6 +79,8 @@ public class MainIndex {
         if (pesanan instanceof PesananDelivery) {
             PesananDelivery pesananDelivery = (PesananDelivery) pesanan;
             System.out.println("Alamat pengiriman: " + pesananDelivery.getAlamat());
+        } if (jumlahPesanan > 3) {
+            System.out.println("Diskon: Rp" + pesanan.getDiskon());
         }
     }
 

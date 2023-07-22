@@ -14,14 +14,17 @@ public class PesananDelivery extends Pesanan {
         return alamat;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
     @Override
     public double getTotalHarga() {
         // Menggunakan harga dasar pesanan ditambah biaya pengiriman
         double totalHargaPesanan = super.getTotalHarga();
         double biayaPengiriman = 7000;
+        if (getJumlah() > 3) {
+            double diskon = totalHargaPesanan * 0.1; // Diskon 10% dari total harga
+            setDiskon(diskon);
+            totalHargaPesanan -= diskon;
+        }
+
         return totalHargaPesanan + biayaPengiriman;
     }
 }
