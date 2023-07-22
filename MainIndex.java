@@ -19,16 +19,28 @@ public class MainIndex {
        
        Scanner scanner = new Scanner(System.in);
         System.out.print("Pilih menu (1-5): ");
-        int pilihanMenu = scanner.nextInt();
-        if (pilihanMenu < 1 || pilihanMenu > 5) {
-            System.out.println("Menu tidak valid.");
+        int pilihanMenu;
+        try {
+            pilihanMenu = scanner.nextInt();
+            if (pilihanMenu < 1 || pilihanMenu > 5) {
+                System.out.println("Menu tidak valid.");
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("Input tidak valid.");
             return;
         }
 
         System.out.print("Jumlah pesanan: ");
-        int jumlahPesanan = scanner.nextInt();
-        if (jumlahPesanan <= 0) {
-            System.out.println("Jumlah pesanan harus lebih dari 0.");
+        int jumlahPesanan;
+        try {
+            jumlahPesanan = scanner.nextInt();
+            if (jumlahPesanan <= 0) {
+                System.out.println("Jumlah pesanan harus lebih dari 0.");
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("Input tidak valid.");
             return;
         }
 
@@ -61,10 +73,17 @@ public class MainIndex {
         Pesanan pesanan;
         if (isDelivery.equalsIgnoreCase("y")) {
             System.out.print("Masukkan alamat pengiriman: ");
-            String alamat = scanner.next();
-            if (alamat.isEmpty()) {
-                System.out.println("Alamat pengiriman tidak boleh kosong.");
-                return;}
+            String alamat;
+            try {
+                alamat = scanner.next();
+                if (alamat.isEmpty()) {
+                    System.out.println("Alamat pengiriman tidak boleh kosong.");
+                    return;
+                }
+            } catch (Exception e) {
+                System.out.println("Input tidak valid.");
+                return;
+            }
             pesanan = new PesananDelivery(menuPesanan, jumlahPesanan, alamat); 
         } else {
             pesanan = new Pesanan(menuPesanan, jumlahPesanan);
