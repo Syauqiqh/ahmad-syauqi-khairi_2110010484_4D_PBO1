@@ -19,28 +19,24 @@ public class MainIndex {
        
        Scanner scanner = new Scanner(System.in);
         System.out.print("Pilih menu (1-5): ");
-        int pilihanMenu;
+        int pilihanMenu = scanner.nextInt();
         try {
-            pilihanMenu = scanner.nextInt();
             if (pilihanMenu < 1 || pilihanMenu > 5) {
-                System.out.println("Menu tidak valid.");
-                return;
+                throw new Exception("Menu tidak valid.");
             }
         } catch (Exception e) {
-            System.out.println("Input tidak valid.");
+            System.out.println(e.getMessage());
             return;
         }
 
         System.out.print("Jumlah pesanan: ");
-        int jumlahPesanan;
+         int jumlahPesanan = scanner.nextInt();
         try {
-            jumlahPesanan = scanner.nextInt();
             if (jumlahPesanan <= 0) {
-                System.out.println("Jumlah pesanan harus lebih dari 0.");
-                return;
+                throw new Exception("Jumlah pesanan harus lebih dari 0.");
             }
         } catch (Exception e) {
-            System.out.println("Input tidak valid.");
+            System.out.println(e.getMessage());
             return;
         }
 
@@ -73,15 +69,13 @@ public class MainIndex {
         Pesanan pesanan;
         if (isDelivery.equalsIgnoreCase("y")) {
             System.out.print("Masukkan alamat pengiriman: ");
-            String alamat;
+            String alamat = scanner.next();
             try {
-                alamat = scanner.next();
                 if (alamat.isEmpty()) {
-                    System.out.println("Alamat pengiriman tidak boleh kosong.");
-                    return;
+                    throw new Exception("Alamat pengiriman tidak boleh kosong.");
                 }
             } catch (Exception e) {
-                System.out.println("Input tidak valid.");
+                System.out.println(e.getMessage());
                 return;
             }
             pesanan = new PesananDelivery(menuPesanan, jumlahPesanan, alamat); 
